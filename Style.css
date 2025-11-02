@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    font-family: 'Times New Roman', Times, serif, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     margin: 0;
     padding: 0;
     background-image: url('TIGER.jpg');  
@@ -30,7 +30,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--background-color);
+    background: radial-gradient(circle farthest-corner at center center, #F6F8F9 0%, #E5EBEE 30%, #D7DEE3 60%, #F5F7F9 100%);
     padding: 15px 0;
     text-align: center;
     box-shadow: var(--shadow);
@@ -133,12 +133,56 @@ section:last-child {
     height: auto;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    border: 8px solid var(--background-color);
     transition: var(--transition);
 }
 
 .baby-image:hover {
     transform: scale(1.05);
+}
+
+/* Flip Card Styles (Integrated and Fixed) */
+.card {
+    width: 100%;
+    max-width: 200px;  /* Made responsive */
+    height: 250px;
+    margin: 1rem auto;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);  /* Used your variable */
+    box-shadow: var(--shadow);  /* Used your variable */
+}
+
+.card-front {
+    background: white;
+    border: 1px solid #e5e7eb;
+}
+
+.card-back {
+    background: var(--primary-color);  /* Used your variable for consistency */
+    color: white;
+    transform: rotateY(180deg);
 }
 
 .baby-pic-frame::before {
@@ -161,6 +205,56 @@ section:last-child {
     flex-wrap: wrap; 
 }
 
+/* Grid Styles for #about Section (Re-added) */
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.div1 {
+    grid-column: span 5 / span 5;
+}
+
+.div2 {
+    grid-row: span 3 / span 3;
+    grid-row-start: 2;
+}
+
+.div3 {
+    grid-row: span 3 / span 3;
+    grid-column-start: 5;
+    grid-row-start: 2;
+}
+
+.div4 {
+    grid-column: span 5 / span 5;
+    grid-column-start: 1;
+    grid-row-start: 5;
+}
+
+.div5 {
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .parent {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .div1, .div2, .div3, .div4, .div5 {
+        grid-column: span 1;
+        grid-row: auto;
+    }
+}
+
 h1, h2 {
     color: var(--primary-color);
     text-align: center;
@@ -178,7 +272,7 @@ p {
     text-align: center;
 }
 
-.video-container video {
+.video-container video, .video-container iframe {
     width: 100%;
     max-width: 800px;  
     height: 400px;
@@ -190,7 +284,7 @@ p {
 
 /* Responsive video */
 @media (max-width: 768px) {
-    .video-container video {
+    .video-container video, .video-container iframe {
         height: 250px;
     }
 }
@@ -255,14 +349,14 @@ p {
 #vlog {
     text-align: center;
     padding: 80px 20px;
-    background: var(--background-color);
+    background: radial-gradient(circle farthest-corner at center center, #F6F8F9 0%, #E5EBEE 30%, #D7DEE3 60%, #F5F7F9 100%);  /* Fixed syntax */
 }
 
 /* About Section */
 #about {
     padding: 80px 20px;
-    background: #f9f9f9;
     text-align: center;
+    background: radial-gradient(circle farthest-corner at center center, #F6F8F9 0%, #E5EBEE 30%, #D7DEE3 60%, #F5F7F9 100%);  /* Fixed syntax */
 }
 
 .about-container {
@@ -294,10 +388,10 @@ main {
     background-color: rgba(255, 255, 255, 0.9);  
     border-radius: var(--border-radius);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: radial-gradient(circle farthest-corner at center center, #F6F8F9 0%, #E5EBEE 30%, #D7DEE3 60%, #F5F7F9 100%);  /* Fixed syntax */
 }
 
 #loves, #songs {
-    background: var(--background-color);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     padding: 40px 20px;  
@@ -305,6 +399,7 @@ main {
     max-width: 800px;  
     position: relative;
     z-index: 1;  
+    background: radial-gradient(circle farthest-corner at center center, #F6F8F9 0%, #E5EBEE 30%, #D7DEE3 60%, #F5F7F9 100%);  /* Fixed syntax */
 }
 
 #loves h2, #songs h2 {
@@ -397,6 +492,14 @@ footer {
         margin: 20px 10px;
     }
     #loves ul {
-        max-width: 100;}
-    
+        max-width: 100%;
+    }
+    /* Mobile Flip Card Adjustments */
+    .card {
+        max-width: 150px;
+        height: 200px;  /* Smaller on mobile */
+    }
+    .card-back {
+        font-size: 0.9rem;
+    }
 }
