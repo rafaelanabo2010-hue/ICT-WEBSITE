@@ -76,19 +76,24 @@ nav ul li a:hover {
 
 /* Mobile Navigation */
 @media (max-width: 768px) {
+    header {
+        padding: 10px 0; /* Reduced padding to make header smaller */
+    }
     .logo {
         left: 20px;
-        font-size: 1.2rem;
+        top: 10px; /* Adjusted top position */
+        font-size: 1rem; /* Smaller logo font */
     }
     nav ul {
         flex-direction: column;
-        gap: 10px;
+        gap: 5px; /* Reduced gap for compactness */
     }
     nav ul li {
         margin: 0;
     }
     nav ul li a {
-        font-size: 16px;
+        font-size: 14px; /* Smaller font size */
+        padding: 3px 8px; /* Reduced padding */
     }
 }
 
